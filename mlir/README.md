@@ -21,11 +21,23 @@ ninja install
 
 ```shell
 cd toy_chapter_01
-mkdir build
-cmake .. -G ninja
+mkdir build && cd build
+cmake -G Ninja ..
 ninja
 
 ./toy ../ast.toy -emit=ast
+
+```
+
+## [Chapter 2: Emit Basic MLIR](toy_chapter_02/README.md)
+
+```shell
+cd toy_chapter_02
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+
+toy ../codegen.toy -emit=mlir -mlir-print-debuginfo 2>codegen.mlir
 
 ```
 

@@ -12,6 +12,22 @@ Chapter 1主要完成的目标是将toy language转换为语法树 ast。
 - Lexer： token 词法解析器，对应于单个token 解析出类型，以及内容
 - AST： 语法树，抽象化的编程语言。
 
+目录结构
+
+```
+.
+|-- CMakeLists.txt
+|-- README.md
+|-- ast.toy
+|-- include
+|   |-- AST.h
+|   |-- Lexer.h
+|   `-- Parser.h
+|-- parser
+|   `-- AST.cpp
+`-- toy.cpp
+```
+
 ## AST(Abstract Syntax Tree)
 
 核心，也是目标生成物，自定而上的多层次结构树。
