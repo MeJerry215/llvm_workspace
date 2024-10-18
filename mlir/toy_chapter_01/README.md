@@ -1,4 +1,4 @@
-# Chapter 1: Toy Language and AST
+# [Chapter 1: Toy Language and AST](https://mlir.llvm.org/docs/Tutorials/Toy/Ch-1/)
 
 Chapter 1主要完成的目标是将toy language转换为语法树 ast。
 

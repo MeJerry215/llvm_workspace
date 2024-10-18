@@ -37,7 +37,7 @@ mkdir build && cd build
 cmake -G Ninja ..
 ninja
 
-toy ../codegen.toy -emit=mlir -mlir-print-debuginfo 2>codegen.mlir
+./toy ../codegen.toy -emit=mlir -mlir-print-debuginfo 2>codegen.mlir
 
 ```
 

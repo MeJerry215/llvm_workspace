@@ -35,25 +35,23 @@
 using namespace toy;
 namespace cl = llvm::cl;
 
+namespace
+{
+enum InputType { Toy, MLIR };
+enum Action { None, DumpAST, DumpMLIR };
+}
+
 static cl::opt<std::string> inputFilename(cl::Positional,
     cl::desc("<input toy file>"),
     cl::init("-"),
     cl::value_desc("filename"));
 
-namespace
-{
-enum InputType { Toy, MLIR };
-} // namespace
 static cl::opt<enum InputType> inputType(
     "x", cl::init(Toy), cl::desc("Decided the kind of output desired"),
     cl::values(clEnumValN(Toy, "toy", "load the input file as a Toy source.")),
     cl::values(clEnumValN(MLIR, "mlir",
             "load the input file as an MLIR file")));
 
-namespace
-{
-enum Action { None, DumpAST, DumpMLIR };
-} // namespace
 static cl::opt<enum Action> emitAction(
     "emit", cl::desc("Select the kind of output desired"),
     cl::values(clEnumValN(DumpAST, "ast", "output the AST dump")),
@@ -142,7 +140,7 @@ int dumpAST()
 
 int main(int argc, char** argv)
 {
-    // Register any command line options.
+    // 注册 mlir 相关的打印命令行参数
     mlir::registerAsmPrinterCLOptions();
     mlir::registerMLIRContextCLOptions();
     cl::ParseCommandLineOptions(argc, argv, "toy compiler\n");

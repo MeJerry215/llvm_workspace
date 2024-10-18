@@ -25,3 +25,5 @@ https://mlir.llvm.org/talks/
 
 https://llvm.org/devmtg/2020-09/slides/MLIR_Tutorial.pdf
 
+
+scaling law paper in 2022
