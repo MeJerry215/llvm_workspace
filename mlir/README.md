@@ -41,7 +41,17 @@ ninja
 
 ```
 
+## [Chapter 3: High-level Language-Specific Analysis and Transformation](toy_chapter_03/README.md)
 
+```shell
+cd toy_chapter_03
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+
+./toy ../trivial_reshape.toy -emit=mlir -opt
+./toy ../transpose_transpose.toy -emit=mlir -opt
+```
 
 
 ## Reference
