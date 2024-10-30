@@ -53,6 +53,18 @@ ninja
 ./toy ../transpose_transpose.toy -emit=mlir -opt
 ```
 
+## [Chapter 4: Enabling Generic Transformation with Interfaces](toy_chapter_04/README.md)
+
+```shell
+cd toy_chapter_04
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+
+./toy ../codegen.toy -emit=mlir -opt
+
+```
+
 
 ## Reference
 
