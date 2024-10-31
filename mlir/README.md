@@ -65,6 +65,18 @@ ninja
 
 ```
 
+## [Chapter 5: Partial Lowering to Lower-Level Dialects for Optimization](toy_chapter_05/README.md)
+
+
+```shell
+cd toy_chapter_05
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+
+./toy ../affine-lowering.mlir -emit=mlir-affine
+```
+
 
 ## Reference
 
