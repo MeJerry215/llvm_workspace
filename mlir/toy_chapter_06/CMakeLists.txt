@@ -35,6 +35,7 @@ set(SOURCE_FILES
     pass/ToyCombine.cpp
     pass/ShapeInferencePass.cpp
     pass/LowerToAffineLoops.cpp
+    pass/LowerToLLVM.cpp
 )
 
 # 生成 toy 可执行文件，并添加依赖项
@@ -42,22 +43,31 @@ add_executable(toy ${SOURCE_FILES})
 
 get_property(dialect_libs GLOBAL PROPERTY MLIR_DIALECT_LIBS)
 get_property(extension_libs GLOBAL PROPERTY MLIR_EXTENSION_LIBS)
+get_property(extension_libs GLOBAL PROPERTY MLIR_EXTENSION_LIBS)
 
 # 链接 LLVM 和 MLIR 库
 target_link_libraries(toy
     PRIVATE
     ${dialect_libs}
     ${extension_libs}
-    MLIRSupport
+    MLIRAnalysis
+    MLIRBuiltinToLLVMIRTranslation
+    MLIRCallInterfaces
+    MLIRCastInterfaces
+    MLIRDialect
+    MLIRExecutionEngine
+    MLIRFunctionInterfaces
     MLIRIR
+    MLIRLLVMCommonConversion
+    MLIRLLVMDialect
+    MLIRLLVMToLLVMIRTranslation
+    MLIRMemRefDialect
     MLIRParser
     MLIRPass
-    MLIRTransforms
-    MLIRDialect
-    MLIRCastInterfaces
-    MLIRCallInterfaces
-    MLIRFunctionInterfaces
     MLIRSideEffectInterfaces
+    MLIRSupport
+    MLIRTargetLLVMIRExport
+    MLIRTransforms
 )
 
 # 添加 td 目录的 CMakeLists.txt

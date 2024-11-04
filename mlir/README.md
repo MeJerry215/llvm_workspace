@@ -78,6 +78,31 @@ ninja
 ```
 
 
+## [Chapter 6: Lowering to LLVM and CodeGeneration](toy_chapter_06/README.md)
+
+```shell
+cd toy_chapter_06
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+
+echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=ast
+echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=mlir-affine
+echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=mlir-llvm
+echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=llvm
+echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=jit
+
+
+./toy ../affine-lowering.mlir -emit=ast
+./toy ../affine-lowering.mlir -emit=mlir-affine
+./toy ../affine-lowering.mlir -emit=mlir-llvm
+./toy ../affine-lowering.mlir -emit=jit
+
+# 可以使用 --mlir-print-ir-after-all 每个pass 之后的IR 变化
+./toy ../affine-lowering.mlir -emit=jit --mlir-print-ir-after-all
+```
+
+
 ## Reference
 
 https://llvm.org/doxygen/classllvm_1_1StringRef.html

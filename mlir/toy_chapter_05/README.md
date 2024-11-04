@@ -18,6 +18,38 @@ MLIR 具有多种Dialects，而为了在多种Dialect间进行转换，则需要
 
 这里和上一章节Shape 推导类似，也是要实现一个Pass，而这个Pass则是实现了 Lowering的功能，在InferShape 之后调用。添加进`OpPassManager` 中的Pass，会按照添加进去的顺序，进行执行调用。
 
+目录结构如下：
+
+```
+|-- CMakeLists.txt
+|-- README.md
+|-- affine-lowering.mlir
+|-- include
+|   |-- AST.h
+|   |-- Dialect.h
+|   |-- Lexer.h
+|   |-- MLIRGen.h
+|   |-- Parser.h
+|   |-- Passes.h
+|   `-- ShapeInferenceInterface.h
+|-- mlir
+|   |-- Dialect.cpp
+|   `-- MLIRGen.cpp
+|-- parser
+|   `-- AST.cpp
+|-- pass
+|   |-- CMakeLists.txt
+|   |-- ShapeInferenceInterface.td
+|   |-- ShapeInferencePass.cpp
+|   |-- ToyCombine.cpp
+|   |-- LowerToAffineLoops.cpp
+|   `-- ToyCombine.td
+|-- td
+|   |-- CMakeLists.txt
+|   `-- Ops.td
+`-- toy.cpp
+```
+
 ## Conversion Target
 
 需要将`Toy` Dialect 转换为 `Affine`、`Arith`、`Fun`c 和 `MemRef` Dialect。
@@ -77,6 +109,7 @@ void ToyToAffineLoweringPass::runOnOperation() {
 Lowering 从实现上看就是 将 上层的`illegal` 单个Operation, 转换为 0个、1个或者多个较为底层的`legal` 的 `Operation`。
 
 从而上层更加专注于 做上层的优化，下层更加专注于做下层的优化。
+
 
 
 ```c++
