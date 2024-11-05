@@ -25,7 +25,7 @@ mkdir build && cd build
 cmake -G Ninja ..
 ninja
 
-./toy ../ast.toy -emit=ast
+./toy ../cases/ast.toy -emit=ast
 
 ```
 
@@ -37,7 +37,7 @@ mkdir build && cd build
 cmake -G Ninja ..
 ninja
 
-./toy ../codegen.toy -emit=mlir -mlir-print-debuginfo 2>codegen.mlir
+./toy ../cases/codegen.toy -emit=mlir -mlir-print-debuginfo 2>codegen.mlir
 
 ```
 
@@ -49,8 +49,8 @@ mkdir build && cd build
 cmake -G Ninja ..
 ninja
 
-./toy ../trivial_reshape.toy -emit=mlir -opt
-./toy ../transpose_transpose.toy -emit=mlir -opt
+./toy ../cases/trivial_reshape.toy -emit=mlir -opt
+./toy ../cases/transpose_transpose.toy -emit=mlir -opt
 ```
 
 ## [Chapter 4: Enabling Generic Transformation with Interfaces](toy_chapter_04/README.md)
@@ -61,7 +61,7 @@ mkdir build && cd build
 cmake -G Ninja ..
 ninja
 
-./toy ../codegen.toy -emit=mlir -opt
+./toy ../cases/codegen.toy -emit=mlir -opt
 
 ```
 
@@ -74,7 +74,7 @@ mkdir build && cd build
 cmake -G Ninja ..
 ninja
 
-./toy ../affine-lowering.mlir -emit=mlir-affine
+./toy ../cases/affine-lowering.mlir -emit=mlir-affine
 ```
 
 
@@ -93,13 +93,26 @@ echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=llvm
 echo 'def main() { print([[1, 2], [3, 4]]); }' | ./toy -emit=jit
 
 
-./toy ../affine-lowering.mlir -emit=ast
-./toy ../affine-lowering.mlir -emit=mlir-affine
-./toy ../affine-lowering.mlir -emit=mlir-llvm
-./toy ../affine-lowering.mlir -emit=jit
+./toy ../cases/affine-lowering.mlir -emit=ast
+./toy ../cases/affine-lowering.mlir -emit=mlir-affine
+./toy ../cases/affine-lowering.mlir -emit=mlir-llvm
+./toy ../cases/affine-lowering.mlir -emit=jit
 
 # 可以使用 --mlir-print-ir-after-all 每个pass 之后的IR 变化
-./toy ../affine-lowering.mlir -emit=jit --mlir-print-ir-after-all
+./toy ../cases/affine-lowering.mlir -emit=jit --mlir-print-ir-after-all
+```
+
+
+## [Chapter 7: Adding a Composite Type to Toy](toy_chapter_07/README.md)
+
+```shell
+cd toy_chapter_07
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+
+./toy ../cases/struct-codegen.toy -emit=jit
+
 ```
 
 
